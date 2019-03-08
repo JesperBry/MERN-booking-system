@@ -1,1 +1,0 @@
-The api folder contains the endpoint files
