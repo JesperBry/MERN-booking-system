@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema,
+const Schema = mongoose.Schema;
 
 const timeSchema = new Schema({
   time: String,
@@ -8,4 +8,4 @@ const timeSchema = new Schema({
   created_at: Date
 });
 
-module.exports = TimeSlot = mongoose.model("timeSlot", timeSchema);
+module.exports = TimeSlot = mongoose.model("timeSlots", timeSchema);
