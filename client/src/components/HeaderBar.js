@@ -8,7 +8,7 @@ class HeaderBar extends React.Component {
   render() {
     return (
       <div className="AppBar">
-        <AppBar position="static" color="secondary">
+        <AppBar position="static" color="primary">
           <Toolbar>
             <Typography variant="h5" color="inherit">
               BOOKING – SYSTEM
