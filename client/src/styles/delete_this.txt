@@ -1,1 +1,0 @@
-The styles folder contains all the component styles.

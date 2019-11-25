@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
@@ -10,8 +9,6 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 // import RaisedButton from "material-ui/core/RaisedButton";
 // import FlatButton from "material-ui/FlatButton";
-// import moment from "moment";
-// import DatePicker from "material-ui/DatePicker";
 // import Dialog from "material-ui/Dialog";
 // import SelectField from "material-ui/SelectField";
 // import MenuItem from "material-ui/MenuItem";
@@ -19,6 +16,10 @@ import Typography from "@material-ui/core/Typography";
 // import SnackBar from "material-ui/Snackbar";
 // import Card from "material-ui/Card";
 // import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
+
+import PageContent from "./PageContent";
+
+import "../styles/Appointment.css";
 
 class Appointment extends React.Component {
   constructor(props) {
@@ -83,40 +84,49 @@ class Appointment extends React.Component {
 
     return (
       <div>
-        <Stepper activeStep={this.state.stepIndex} orientation="vertical">
-          {steps.map((label, index) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-              <StepContent>
-                <div>
+        <div className="formStepper">
+          <Stepper
+            activeStep={this.state.stepIndex}
+            orientation="vertical"
+            className="stepper"
+          >
+            {steps.map((label, index) => (
+              <Step key={label} className="step">
+                <StepLabel>{label}</StepLabel>
+                <StepContent>
                   <div>
-                    <Button
-                      disabled={this.state.stepIndex === 0}
-                      onClick={this.stepBackward}
-                    >
-                      Back
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.stepForward}
-                    >
-                      {this.state.stepIndex === steps.length - 1
-                        ? "Finish"
-                        : "Next"}
-                    </Button>
+                    <PageContent step={index} />
+                    <div className="buttonContainer">
+                      <Button
+                        disabled={this.state.stepIndex === 0}
+                        onClick={this.stepBackward}
+                      >
+                        Back
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.stepForward}
+                      >
+                        {this.state.stepIndex === steps.length - 1
+                          ? "Finish"
+                          : "Next"}
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </StepContent>
-            </Step>
-          ))}
-        </Stepper>
+                </StepContent>
+              </Step>
+            ))}
+          </Stepper>
+        </div>
         {this.state.stepIndex === steps.length && (
-          <Paper square elevation={0}>
-            <Typography component="h4" variant="h2">
-              You have a 1 hour appointment on ... at ...
-            </Typography>
-          </Paper>
+          <div className="finishText">
+            <Paper square elevation={0}>
+              <Typography component="h4" variant="h2">
+                You have a 1 hour appointment on ... at ...
+              </Typography>
+            </Paper>
+          </div>
         )}
       </div>
     );

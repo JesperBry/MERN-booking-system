@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 //import { Provider } from "react-redux";
-import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 //import store from "./store";
 import Appointment from "./components/Appointment";
@@ -15,10 +15,10 @@ class App extends Component {
       // Provider: wraps the React application and makes the Redux state available to all container components in the application’s hierarchy
       //<Provider store={store}>
       <div className="App">
-        <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <HeaderBar />
           <Appointment />
-        </MuiThemeProvider>
+        </ThemeProvider>
       </div>
       //</Provider>
     );

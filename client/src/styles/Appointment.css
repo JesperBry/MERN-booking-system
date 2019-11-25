@@ -1,0 +1,25 @@
+.formStepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.6rem;
+  padding-bottom: 1.6rem;
+}
+
+.step {
+}
+
+.stepper {
+}
+
+.buttonContainer {
+  margin: 1.6rem;
+}
+
+.buttonContainer button {
+  margin: 0.3rem;
+}
+
+.finishText {
+  text-align: center;
+}
