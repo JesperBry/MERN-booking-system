@@ -1,5 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "reactn";
 import TextField from "@material-ui/core/TextField";
 import EmailValidator from "email-validator";
 
@@ -10,68 +9,62 @@ class ContactForm extends React.Component {
     super(props);
 
     this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
       validatePhone: false,
       showPhoneError: false,
       validateEmail: false,
-      showEmailError: false,
-      emailErrorMessage: null,
-      phoneErrorMessage: null
+      showEmailError: false
     };
   }
 
   _validatePhone = number => {
     const phoneRegex = /^(\+?)([0-9]{2,3})?(-?)([0-9]{6,12})$/;
     if (phoneRegex.test(number)) {
+      this.setGlobal({ phoneErrorMessage: null });
       this.setState({
         validatePhone: true,
-        showPhoneError: false,
-        phoneErrorMessage: null
+        showPhoneError: false
       });
     } else {
+      this.setGlobal({ phoneErrorMessage: "Enter avalid phone number" });
       this.setState({
         validatePhone: false,
-        showPhoneError: true,
-        phoneErrorMessage: "Enter avalid phone number"
+        showPhoneError: true
       });
     }
   };
 
   _validateEmail = email => {
     if (EmailValidator.validate(email)) {
+      this.setGlobal({ emailErrorMessage: null });
       this.setState({
         validateEmail: true,
-        showEmailError: false,
-        emailErrorMessage: null
+        showEmailError: false
       });
     } else {
+      this.setGlobal({ emailErrorMessage: "Enter avalid email address" });
       this.setState({
         validateEmail: false,
-        showEmailError: true,
-        emailErrorMessage: "Enter avalid email address"
+        showEmailError: true
       });
     }
   };
 
   _handleFirstName = e => {
-    this.setState({ firstName: e.target.value });
+    this.setGlobal({ firstName: e.target.value });
   };
 
   _handleLastName = e => {
-    this.setState({ lastName: e.target.value });
+    this.setGlobal({ lastName: e.target.value });
   };
 
   _handleEmail = e => {
-    this.setState({ email: e.target.value });
-    this._validateEmail(this.state.email);
+    this.setGlobal({ email: e.target.value });
+    this._validateEmail(this.global.email);
   };
 
   _handlePhone = e => {
-    this.setState({ phone: e.target.value });
-    this._validatePhone(this.state.phone);
+    this.setGlobal({ phone: e.target.value });
+    this._validatePhone(this.global.phone);
   };
 
   render() {
@@ -104,7 +97,7 @@ class ContactForm extends React.Component {
           placeholder="Email"
           required={true}
           error={this.state.showEmailError}
-          helperText={this.state.emailErrorMessage}
+          helperText={this.global.emailErrorMessage}
           value={this.state.email}
           onChange={this._handleEmail}
         />
@@ -116,7 +109,7 @@ class ContactForm extends React.Component {
           placeholder="Phone"
           required={true}
           error={this.state.showPhoneError}
-          helperText={this.state.phoneErrorMessage}
+          helperText={this.global.phoneErrorMessage}
           value={this.state.phone}
           onChange={this._handlePhone}
         />

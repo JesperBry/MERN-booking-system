@@ -1,5 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "reactn";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
@@ -7,15 +6,6 @@ import StepContent from "@material-ui/core/StepContent";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-// import RaisedButton from "material-ui/core/RaisedButton";
-// import FlatButton from "material-ui/FlatButton";
-// import Dialog from "material-ui/Dialog";
-// import SelectField from "material-ui/SelectField";
-// import MenuItem from "material-ui/MenuItem";
-// import TextField from "material-ui/TextField";
-// import SnackBar from "material-ui/Snackbar";
-// import Card from "material-ui/Card";
-// import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 
 import PageContent from "./PageContent";
 
@@ -64,6 +54,10 @@ class Appointment extends React.Component {
 
   stepForward = () => {
     const { stepIndex } = this.state;
+    // Handle finish:
+    if (this.state.stepIndex === this.getSteps().length - 1) {
+      console.log(this.global);
+    }
     this.setState({
       stepIndex: stepIndex + 1,
       finished: stepIndex >= 2

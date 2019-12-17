@@ -1,10 +1,9 @@
-import React from "react";
+import React, { setGlobal } from "reactn";
 import MomentUtils from "@date-io/moment";
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider
 } from "@material-ui/pickers";
-import PropTypes from "prop-types";
 import moment from "moment";
 
 class DateField extends React.Component {
@@ -15,11 +14,15 @@ class DateField extends React.Component {
       schedule: [],
       selectedDate: moment()
     };
+
+    setGlobal({
+      selectedDate: this.state.selectedDate
+    });
   }
 
   // set the state of the appointmentDate field.
   handleSetAppointmentDate = date => {
-    this.setState({ selectedDate: date });
+    this.setGlobal({ selectedDate: date });
   };
 
   // Check for diasble dates

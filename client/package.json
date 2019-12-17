@@ -14,7 +14,9 @@
     "react-dom": "^16.11.0",
     "react-redux": "^6.0.1",
     "react-scripts": "^2.1.8",
+    "reactn": "^2.2.4",
     "redux": "^4.0.4",
+    "redux-form": "^8.2.6",
     "redux-thunk": "^2.3.0",
     "simpl-schema": "^1.5.6"
   },
@@ -35,6 +37,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "reactn-devtools": "^1.1.0",
     "redux-devtools-extension": "^2.13.8"
   }
 }

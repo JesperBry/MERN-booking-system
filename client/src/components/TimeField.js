@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import RadioGroup from "@material-ui/core/RadioGroup";
 
 class TimeField extends React.Component {
