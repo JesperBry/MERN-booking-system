@@ -10,8 +10,8 @@ router.get("/", (req, res) => {
 
 router.post("/add", (req, res) => {
   const newTimeSlot = new TimeSlot({
-    time: req.body.time,
-    date: req.body.date,
+    time: req.body.slot.time,
+    date: req.body.slot.date,
     created_at: Date.now()
   });
   newTimeSlot.save();
@@ -31,3 +31,16 @@ router.post("/add", (req, res) => {
 });
 
 module.exports = router;
+
+/*
+ * POST request structure:
+ * {	
+    "name": "FirstName LastName",
+    "email": "example@example.com",
+    "phone": "12345678",
+    "slot": {
+      "time": "1",
+      "date": "YYYY-DD-MM"
+    }
+  }
+ */
