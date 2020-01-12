@@ -6,6 +6,7 @@ import StepContent from "@material-ui/core/StepContent";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import moment from "moment";
 
 import PageContent from "./PageContent";
 
@@ -29,7 +30,7 @@ class Appointment extends React.Component {
     };
   }
 
-  // componentWillMount() {
+  // UNSAFE_componentWillMount() {
   //   fetch("http://localhost:5000/api/timeslots").then(res =>
   //     res
   //       .json()
@@ -117,7 +118,9 @@ class Appointment extends React.Component {
           <div className="finishText">
             <Paper square elevation={0}>
               <Typography component="h4" variant="h2">
-                You have a 1 hour appointment on ... at ...
+                You have an appointment on{" "}
+                {moment(this.global.selectedDate).format("ddd")}{" "}
+                {moment(this.global.selectedDate).format("Do")} at {"..."}
               </Typography>
             </Paper>
           </div>

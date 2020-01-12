@@ -52,7 +52,7 @@ class DateField extends React.Component {
             id="date-picker-inline"
             label="Select a date"
             format="DD/MM/YYYY"
-            value={this.state.selectedDate}
+            value={this.global.selectedDate}
             onChange={date => this.handleSetAppointmentDate(date)}
             shouldDisableDate={day => this.checkDisableDate(day)}
             disablePast
