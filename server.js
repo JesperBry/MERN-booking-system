@@ -4,6 +4,7 @@ const bodyParser = require("body-parser"); // Let us use requests
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const cors = require("cors");
 
 const appointments = require("./routes/api/appointments");
 const timeslots = require("./routes/api/timeslots");
@@ -13,6 +14,7 @@ const app = express();
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 app.use(logger("dev"));
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, "public")));
