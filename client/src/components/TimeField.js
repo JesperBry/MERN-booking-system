@@ -48,6 +48,12 @@ class TimeField extends React.Component {
     return false;
   };
 
+  handelChecked = event => {
+    if (event.target.checked) {
+      this.setGlobal({ timeSlot: event.target.value });
+    }
+  };
+
   render() {
     const workHours = [
       { slot: "08:00 - 09:00", value: "1", disabled: this.handleDisabled("1") },
@@ -68,6 +74,7 @@ class TimeField extends React.Component {
           control={<Radio color="primary" />}
           label={slot.slot}
           disabled={slot.disabled}
+          onChange={this.handelChecked}
         />
       );
     });

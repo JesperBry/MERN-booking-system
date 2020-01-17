@@ -10,6 +10,8 @@ import moment from "moment";
 
 import PageContent from "./PageContent";
 
+import timeToDisplay from "./utils/TimeToDisplay";
+
 import "../styles/Appointment.css";
 
 class Appointment extends React.Component {
@@ -117,10 +119,11 @@ class Appointment extends React.Component {
         {this.state.stepIndex === steps.length && (
           <div className="finishText">
             <Paper square elevation={0}>
-              <Typography component="h4" variant="h2">
+              <Typography component="h6" variant="h4">
                 You have an appointment on{" "}
                 {moment(this.global.selectedDate).format("ddd")}{" "}
-                {moment(this.global.selectedDate).format("Do")} at {"..."}
+                {moment(this.global.selectedDate).format("Do")} at{" "}
+                {timeToDisplay(this.global.timeSlot)}
               </Typography>
             </Paper>
           </div>
