@@ -19,33 +19,10 @@ class Appointment extends React.Component {
     super(props);
 
     this.state = {
-      first_name: "",
-      last_name: "",
-      email: "",
-      phone: "",
-      schedule: [],
-      appointments: [],
-      confirmation: false,
-      dateSelected: false,
       finished: false,
       stepIndex: 0
     };
   }
-
-  // UNSAFE_componentWillMount() {
-  //   fetch("http://localhost:5000/api/timeslots").then(res =>
-  //     res
-  //       .json()
-  //       .then(data =>
-  //         this.setState({
-  //           appointments: data
-  //         })
-  //       )
-  //       .catch(error => {
-  //         console.log(error);
-  //       })
-  //   );
-  // }
 
   getSteps = () => {
     return [
@@ -55,11 +32,31 @@ class Appointment extends React.Component {
     ];
   };
 
+  handleFinish = () => {
+    fetch("http://localhost:5000/api/appointments/add/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: `${this.global.firstName} ${this.global.lastName}`,
+        email: this.global.email,
+        phone: this.global.phone,
+        slot: {
+          time: this.global.timeSlot,
+          date: moment(this.global.selectedDate).format("YYYY-MM-DD")
+        }
+      })
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+
   stepForward = () => {
     const { stepIndex } = this.state;
     // Handle finish:
     if (this.state.stepIndex === this.getSteps().length - 1) {
-      console.log(this.global);
+      this.handleFinish();
     }
     this.setState({
       stepIndex: stepIndex + 1,

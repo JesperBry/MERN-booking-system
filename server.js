@@ -12,9 +12,9 @@ const timeslots = require("./routes/api/timeslots");
 const app = express();
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
 app.use(logger("dev"));
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, "public")));

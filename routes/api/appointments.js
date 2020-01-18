@@ -50,7 +50,7 @@ module.exports = router;
     "email": "example@example.com",
     "phone": "12345678",
     "slot": {
-      "time": "1",
+      "time": "slot number",
       "date": "YYYY-DD-MM"
     }
   }
