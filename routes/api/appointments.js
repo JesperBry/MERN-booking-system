@@ -1,5 +1,6 @@
 const express = require("express");
 const { check, validationResult } = require("express-validator");
+const sanitize = require("mongo-sanitize");
 
 const Appointment = require("../../models/Appointment");
 const TimeSlot = require("../../models/TimeSlot");
@@ -20,17 +21,17 @@ router.post(
     }
 
     const newTimeSlot = new TimeSlot({
-      time: req.body.slot.time,
-      date: req.body.slot.date,
+      time: sanitize(req.body.slot.time),
+      date: sanitize(req.body.slot.date),
       created_at: Date.now()
     });
     newTimeSlot.save();
 
     const newAppointment = new Appointment({
-      name: req.body.name,
-      email: req.body.email,
-      phone: req.body.phone,
-      slot: newTimeSlot._id
+      name: sanitize(req.body.name),
+      email: sanitize(req.body.email),
+      phone: sanitize(req.body.phone),
+      slot: sanitize(newTimeSlot._id)
     });
 
     newAppointment.save((err, saved) => {
