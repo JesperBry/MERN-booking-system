@@ -1,4 +1,4 @@
-import React from "reactn";
+import React, { setGlobal } from "reactn";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
@@ -22,6 +22,10 @@ class Appointment extends React.Component {
       finished: false,
       stepIndex: 0
     };
+
+    setGlobal({
+      stepperDisabled: true
+    });
   }
 
   getSteps = () => {
@@ -73,6 +77,14 @@ class Appointment extends React.Component {
     }
   };
 
+  handleDisableBtn = obj => {
+    if (obj.email != null && obj.phone != null) {
+      return false;
+    } else {
+      return obj.stepperDisabled;
+    }
+  };
+
   render() {
     const steps = this.getSteps();
 
@@ -100,6 +112,7 @@ class Appointment extends React.Component {
                       <Button
                         variant="contained"
                         color="primary"
+                        disabled={this.handleDisableBtn(this.global)}
                         onClick={this.stepForward}
                       >
                         {this.state.stepIndex === steps.length - 1

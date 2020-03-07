@@ -1,4 +1,4 @@
-import React from "reactn";
+import React, { setGlobal } from "reactn";
 import TextField from "@material-ui/core/TextField";
 import EmailValidator from "email-validator";
 
@@ -14,6 +14,14 @@ class ContactForm extends React.Component {
       validateEmail: false,
       showEmailError: false
     };
+
+    setGlobal({
+      stepperDisabled: true,
+      firstName: null,
+      lastName: null,
+      email: null,
+      phone: null
+    });
   }
 
   _validatePhone = number => {

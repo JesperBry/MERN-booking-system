@@ -1,4 +1,4 @@
-import React from "reactn";
+import React, { setGlobal } from "reactn";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
@@ -11,6 +11,10 @@ class TimeField extends React.Component {
     this.state = {
       unavailableSlots: []
     };
+
+    setGlobal({
+      stepperDisabled: true
+    });
   }
 
   // set the state of the appointmentSlot field.
@@ -50,7 +54,7 @@ class TimeField extends React.Component {
 
   handelChecked = event => {
     if (event.target.checked) {
-      this.setGlobal({ timeSlot: event.target.value });
+      this.setGlobal({ timeSlot: event.target.value, stepperDisabled: false });
     }
   };
 

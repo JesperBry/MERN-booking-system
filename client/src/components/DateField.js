@@ -11,18 +11,17 @@ class DateField extends React.Component {
     super(props);
 
     this.state = {
-      schedule: [],
-      selectedDate: moment()
+      schedule: []
     };
 
     setGlobal({
-      selectedDate: this.state.selectedDate
+      selectedDate: null
     });
   }
 
   // set the state of the appointmentDate field.
   handleSetAppointmentDate = date => {
-    this.setGlobal({ selectedDate: date });
+    this.setGlobal({ selectedDate: date, stepperDisabled: false });
   };
 
   // Check for diasble dates
