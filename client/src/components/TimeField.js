@@ -9,50 +9,50 @@ class TimeField extends React.Component {
     super(props);
 
     this.state = {
-      unavailableSlots: []
+      unavailableSlots: [],
     };
 
     setGlobal({
-      stepperDisabled: true
+      stepperDisabled: true,
     });
   }
 
   // set the state of the appointmentSlot field.
-  handleSetAppointmentSlot = slot => {
+  handleSetAppointmentSlot = (slot) => {
     this.setState({ appointmentSlot: slot });
   };
 
   UNSAFE_componentWillMount() {
     fetch(
-      `http://localhost:5000/api/timeslots/${moment(
+      `${process.env.REACT_APP_DOMAIN}/api/timeslots/${moment(
         this.global.selectedDate
       ).format("YYYY-MM-DD")}`
-    ).then(res =>
+    ).then((res) =>
       res
         .json()
-        .then(data =>
+        .then((data) =>
           this.setState({
-            unavailableSlots: data
+            unavailableSlots: data,
           })
         )
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         })
     );
   }
 
-  handleDisabled = value => {
+  handleDisabled = (value) => {
     if (
       moment(this.global.selectedDate).day() === 0 || // Sunday
       moment(this.global.selectedDate).day() === 6 || // Saturday
-      this.state.unavailableSlots.some(slot => slot.time === value)
+      this.state.unavailableSlots.some((slot) => slot.time === value)
     ) {
       return true;
     }
     return false;
   };
 
-  handelChecked = event => {
+  handelChecked = (event) => {
     if (event.target.checked) {
       this.setGlobal({ timeSlot: event.target.value, stepperDisabled: false });
     }
@@ -67,7 +67,7 @@ class TimeField extends React.Component {
       { slot: "Lunch break", value: " ", disabled: true },
       { slot: "13:00 - 14:00", value: "5", disabled: this.handleDisabled("5") },
       { slot: "14:00 - 15:00", value: "6", disabled: this.handleDisabled("6") },
-      { slot: "15:00 - 16:00", value: "7", disabled: this.handleDisabled("7") }
+      { slot: "15:00 - 16:00", value: "7", disabled: this.handleDisabled("7") },
     ];
 
     let timeList = workHours.map((slot, i) => {
@@ -88,7 +88,7 @@ class TimeField extends React.Component {
         <RadioGroup
           style={{
             marginTop: "1.6rem",
-            marginLeft: "1.6rem"
+            marginLeft: "1.6rem",
           }}
           name="appointmentTimes"
           //defaultSelected={data.appointmentSlot}

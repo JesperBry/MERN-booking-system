@@ -1,10 +1,13 @@
-const Password = require("./keys_private").Password;
+const Password = require("./keys_private").Password || process.env.DB_PASSWORD;
+
+const db_Url =
+  "mongodb+srv://dev:" +
+    Password +
+    "@appointment-ps4a0.mongodb.net/test?retryWrites=true" ||
+  process.env.DB_URL;
 
 module.exports = {
-  mongoURI:
-    "mongodb+srv://dev:" +
-    Password +
-    "@appointment-ps4a0.mongodb.net/test?retryWrites=true"
+  mongoURI: db_Url,
 };
 
 // mongodb: is the protocol definition

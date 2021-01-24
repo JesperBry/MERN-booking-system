@@ -7,6 +7,8 @@ const logger = require("morgan");
 const cors = require("cors");
 const helmet = require("helmet");
 
+require("dotenv").config();
+
 const appointments = require("./routes/api/appointments");
 const timeslots = require("./routes/api/timeslots");
 
@@ -17,7 +19,7 @@ app.use(helmet());
 
 app.use(
   cors({
-    origin: "http://localhost:3000"
+    origin: process.env.CORS_URL,
   })
 );
 app.use(bodyParser.json());
@@ -32,13 +34,13 @@ const db = require("./config/keys").mongoURI;
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB Connected..."))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 // Uses the routes from routes/api/items.js
 //app.use("/api/endpointName", endpointName);
 app.use("/api/appointments", appointments);
 app.use("/api/timeslots", timeslots);
 
-const port = 5000; // Sets port for server
+const port = process.env.SERVER_PORT || 5000; // Sets port for server
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
