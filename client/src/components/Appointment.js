@@ -20,11 +20,11 @@ class Appointment extends React.Component {
 
     this.state = {
       finished: false,
-      stepIndex: 0
+      stepIndex: 0,
     };
 
     setGlobal({
-      stepperDisabled: true
+      stepperDisabled: true,
     });
   }
 
@@ -32,15 +32,15 @@ class Appointment extends React.Component {
     return [
       "Choose an available day for your appointment",
       "Choose an available time for your appointment",
-      "Contact information"
+      "Contact information",
     ];
   };
 
   handleFinish = () => {
-    fetch("http://localhost:5000/api/appointments/add/", {
+    fetch(`${process.env.REACT_APP_DOMAIN}/api/appointments/add/`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name: `${this.global.firstName} ${this.global.lastName}`,
@@ -48,10 +48,10 @@ class Appointment extends React.Component {
         phone: this.global.phone,
         slot: {
           time: this.global.timeSlot,
-          date: moment(this.global.selectedDate).format("YYYY-MM-DD")
-        }
-      })
-    }).catch(error => {
+          date: moment(this.global.selectedDate).format("YYYY-MM-DD"),
+        },
+      }),
+    }).catch((error) => {
       console.log(error);
     });
   };
@@ -64,7 +64,7 @@ class Appointment extends React.Component {
     }
     this.setState({
       stepIndex: stepIndex + 1,
-      finished: stepIndex >= 2
+      finished: stepIndex >= 2,
     });
   };
 
@@ -72,12 +72,12 @@ class Appointment extends React.Component {
     const { stepIndex } = this.state;
     if (stepIndex > 0) {
       this.setState({
-        stepIndex: stepIndex - 1
+        stepIndex: stepIndex - 1,
       });
     }
   };
 
-  handleDisableBtn = obj => {
+  handleDisableBtn = (obj) => {
     if (obj.email != null && obj.phone != null) {
       return false;
     } else {
