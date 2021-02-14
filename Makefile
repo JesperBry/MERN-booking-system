@@ -5,6 +5,12 @@ build-server:
 build-client:
 	cd client && make build
 
+# Docker run commands
+run-server:
+	docker run -d -p 5000:5000 server
+
+run-client:
+	docker run -d -p 3000:3000 client
 
 # NPM run commands
 dev:
