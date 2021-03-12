@@ -1,4 +1,4 @@
-name: Node.js React Client
+name: Build React Client
 
 on:
   push:
