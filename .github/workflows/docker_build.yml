@@ -16,7 +16,8 @@ jobs:
         run: |
          docker-compose up -d
          docker-compose build
-      - name: Test client
-        run: appropriate/curl -s --retry 10 --retry-connrefused http://localhost:3000/
-      - name: Test server appointments
-        run: appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/api/appointments
+         
+      - name: curl client
+        uses: wei/curl@master
+        with:
+         args: http://localhost:3000/
