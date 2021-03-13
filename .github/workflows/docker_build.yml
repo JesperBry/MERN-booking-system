@@ -13,8 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build stack
-        run: docker-compose up -d
+        run: |
+         docker-compose up -d
+         docker-compose build
       - name: Test client
-        run: docker run $(docker build -f client/Dockerfile -q .) appropriate/curl -s --retry 10 --retry-connrefused http://localhost:3000/
+        run: appropriate/curl -s --retry 10 --retry-connrefused http://localhost:3000/
       - name: Test server appointments
-        run: docker run $(docker build -f server/Dockerfile -q .) appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/api/appointments
+        run: appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/api/appointments
