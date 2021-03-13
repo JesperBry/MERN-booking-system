@@ -15,6 +15,6 @@ jobs:
       - name: Build stack
         run: docker-compose up -d
       - name: Test client
-        run: docker run $(docker build -q .) appropriate/curl -s --retry 10 --retry-connrefused http://localhost:3000/
-      - name: Test server
-        run: docker run $(docker build -q .) appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/
+        run: docker run $(docker build -f client/Dockerfile -q .) appropriate/curl -s --retry 10 --retry-connrefused http://localhost:3000/
+      - name: Test server appointments
+        run: docker run $(docker build -f server/Dockerfile -q .) appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/api/appointments
