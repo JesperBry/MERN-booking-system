@@ -13,11 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build stack
-        run: |
-         docker-compose up -d
-         docker-compose build
+        run: docker-compose up --build -d
          
       - name: Curl client
         run: |
          sleep 10 &&
          curl -I http://localhost:3000/
+      
+      - name: Curl server
+        run: | 
+         sleep 10 &&
+         curl -I http://localhost:5000/api/appointments &&
+         sleep 10 &&
+         curl -I http://localhost:5000/api/timeslots
