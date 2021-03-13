@@ -17,7 +17,7 @@ jobs:
          docker-compose up -d
          docker-compose build
          
-      - name: curl client
-        uses: wei/curl@master
-        with:
-         args: http://localhost:3000/
+      - name: Curl client
+        run: |
+         sleep 10 &&
+         curl -I http://localhost:3000/
