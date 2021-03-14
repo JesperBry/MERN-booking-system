@@ -22,6 +22,7 @@ jobs:
       
       - name: Curl api
         run: |
+         sleep 10
          curl -I -X GET http://localhost:5000/api/appointments
          sleep 10
          curl -I -X GET http://localhost:5000/api/timeslots
