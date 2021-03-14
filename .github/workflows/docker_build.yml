@@ -18,9 +18,5 @@ jobs:
       - name: Curl client
         run: |
          sleep 10 &&
-         curl -I -X GET http://localhost:3000/
-      
-      - name: Curl api
-        run: |
-         sleep 10 &&
+         curl -I -X GET http://localhost:3000/ &&
          curl -I -H "Host: http://localhost:3000/" -X GET http://localhost:5000/api/appointments
