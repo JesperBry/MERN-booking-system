@@ -1,0 +1,21 @@
+name: docker-compose
+ 
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build stack
+        run: docker-compose up -d
+      
+      - name: Curl client
+        run: |
+         sleep 10 &&
+         curl -I -X GET http://localhost:3000/
