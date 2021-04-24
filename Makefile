@@ -16,8 +16,8 @@ run-client:
 dev:
 	cd server && npm run dev
 
-server:
+node-server:
 	cd server && npm start
 
-client:
+react-client:
 	cd client && npm start
