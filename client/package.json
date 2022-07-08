@@ -8,7 +8,7 @@
     "@material-ui/icons": "^3.0.2",
     "@material-ui/pickers": "^3.2.7",
     "email-validator": "^2.0.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
